@@ -1,0 +1,129 @@
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+
+<ng-template #signupForm>
+  <div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <!-- <div class="form-group">
+        <label for="name">Your name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+        <div *ngIf="f.submitted && name.invalid">
+          <div *ngIf="name.errors.required">Name is required</div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+          required />
+        <div *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+        <div *ngIf="f.submitted && email.invalid">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+          required minlength="6" />
+        <div *ngIf="f.submitted && password.invalid">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div>
+
+      
+      <div class="form-group">
+        <label for="actualentreprise">actual entreprise</label>
+        <input type="text" class="form-control" name="actualentreprise" [(ngModel)]="form.actualentreprise" #actualentreprise="ngModel" required  />
+        <div *ngIf="f.submitted && actualentreprise.invalid">
+          <div *ngIf="actualentreprise.errors.required">actual entreprise is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nationality">nationality</label>
+        <input type="text" class="form-control" name="nationality" [(ngModel)]="form.nationality" #nationality="ngModel" required  />
+        <div *ngIf="f.submitted && nationality.invalid">
+          <div *ngIf="nationality.errors.required">nationality is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="experience">experience</label>
+        <input type="number" class="form-control" name="experience" [(ngModel)]="form.experience" #experience="ngModel" required  />
+        <div *ngIf="f.submitted && experience.invalid">
+          <div *ngIf="experience.errors.required">experience is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="nom">nom</label>
+        <input type="text" class="form-control" name="nom" [(ngModel)]="form.nom" #nom="ngModel" required  />
+        <div *ngIf="f.submitted && experience.invalid">
+          <div *ngIf="nom.errors.required">name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="prenom">prenom</label>
+        <input type="text" class="form-control" name="prenom" [(ngModel)]="form.prenom" #prenom="ngModel" required  />
+        <div *ngIf="f.submitted && prenom.invalid">
+          <div *ngIf="prenom.errors.required">prenom is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="numtel">numtel</label>
+        <input type="number" class="form-control" name="numtel" [(ngModel)]="form.numtel" #numtel="ngModel" required  />
+        <div *ngIf="f.submitted && numtel.invalid">
+          <div *ngIf="numtel.errors.required">numtel is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="datenaiss">date naissance</label>
+        <input type="date" class="form-control" name="datenaiss" [(ngModel)]="form.datenaiss" #datenaiss="ngModel" required  />
+        <div *ngIf="f.submitted && experience.invalid">
+          <div *ngIf="datenaiss.errors.required">date of birth is required</div>
+        </div>
+      </div>
+
+      
+      <div class="form-group">
+        <label for="motivationtxt">motivation text </label>
+       <textarea type="text" class="form-control" name="motivationtxt" [(ngModel)]="form.motivationtxt" #motivationtxt="ngModel" required ></textarea>
+        <div *ngIf="f.submitted && motivationtxt.invalid">
+          <div *ngIf="motivationtxt.errors.required">motivationtxt is required</div>
+        </div>
+      </div>
+
+      <!-- <h1>Upload and Download File</h1>
+      <input type="file" id="customFile" (change)="selectFile($event)">
+      <button class="btn btn-primary" [disabled]="!selectedFiles || admincheck || status" (click)="upload()">Save File</button>
+      <button class="btn btn-primary" style="margin-left: 10px" (click)="downloadFile()">View File</button>
+       -->
+       <div>
+        <input #fileInput type="file" ng2FileSelect [uploader]="uploader"/>
+       
+        <div class="drop-box" ng2FileDrop
+             [ngClass]="{'dragover': isDropOver}"
+             [uploader]="uploader"
+             (fileOver)="fileOverAnother($event)"
+             (click)="fileClicked()">
+          <span class="drag-in-title">Import or drag cv here</span>
+          <span class="drag-over-title">Drop the cv file</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary">Register</button>
+        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

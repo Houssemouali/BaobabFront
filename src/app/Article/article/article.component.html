@@ -1,0 +1,34 @@
+<ng-template #articleForm>
+  <div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <!-- <div class="form-group">
+        <label for="name">Your name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+        <div *ngIf="f.submitted && name.invalid">
+          <div *ngIf="name.errors.required">Name is required</div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="form.title" #title="ngModel"
+          required />
+        <div *ngIf="f.submitted && title.invalid">
+          <div *ngIf="title.errors.required">title is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="content">content </label>
+       <textarea type="text" class="form-control" name="content" [(ngModel)]="form.content" #content="ngModel" required ></textarea>
+        <div *ngIf="f.submitted && content.invalid">
+          <div *ngIf="content.errors.required">content is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary">Register</button>
+        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
