@@ -106,18 +106,34 @@
       <button class="btn btn-primary" style="margin-left: 10px" (click)="downloadFile()">View File</button>
        -->
        <div>
-        <input #fileInput type="file" ng2FileSelect [uploader]="uploader"/>
        
-        <div class="drop-box" ng2FileDrop
+       
+        <div  ng2FileDrop
              [ngClass]="{'dragover': isDropOver}"
              [uploader]="uploader"
              (fileOver)="fileOverAnother($event)"
-             (click)="fileClicked()">
+           class="well my-drop-zone"
+           (click)="fileClicked()"
+             >Drop cv here </div>
+             <input type="file" ng2FileSelect [uploader]="uploader" />
           <span class="drag-in-title">Import or drag cv here</span>
           <span class="drag-over-title">Drop the cv file</span>
+       
+      </div>
+      
+      <div>
+        <input #fileInput2="ngModel" type="file" ng2FileSelect [uploader]="uploader2" name="portefolio" [(ngModel)]="form.portefolio" />
+          <div class="drop-box" ng2FileDrop
+        [ngClass]="{'dragover': isDropOver}"
+        [uploader]="uploader2"
+        (fileOver)="fileOverAnother($event)"
+        (ngSubmit)="pfileClicked()"
+        >
+        <span class="drag-in-title">Import or drag portefolio here</span>
+        <span class="drag-over-title">Drop portefolio here</span>
         </div>
       </div>
-
+     
       <div class="form-group">
         <button class="btn btn-primary">Register</button>
         <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">

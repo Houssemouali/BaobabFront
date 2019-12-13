@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpEvent,HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
@@ -22,9 +22,23 @@ export class AuthService {
   private loginJournalistUrl = 'http://localhost:8080/journalist/auth/signin';
   private signupJournalistUrl = 'http://localhost:8080/journalist/auth/signup';
 
-  private postArticle='http://localhost:8080/api/article';
-
+  private postArticle='http://localhost:8080/api/article/AddArticle';
+  private getAllArticles='http://localhost:8080/api/article';
   constructor(private http: HttpClient) {
+  }
+
+  pushFileToStorage(journalist:any[],file: File,file2: File): Observable<HttpEvent<{}>> {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    formdata.append('file', file2);
+
+    //formdata.append('name', name);
+    const req = new HttpRequest('POST', 'http://localhost:8080/journalist/auth/signup', formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
@@ -38,6 +52,10 @@ export class AuthService {
 
   AuthpostArticle(info:ArticleInfo): Observable<string> {
     return this.http.post<string>(this.postArticle, info, httpOptions);
+  }
+  getArticle():Observable <any>{
+    
+    return this.http.get(this.getAllArticles);
   }
   /*Journalist sign up & authentification*/
 

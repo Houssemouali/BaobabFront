@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginJournalistComponent } from './login-journalist/login-journalist.component';
 import { RegisterJournalistComponent } from './register-journalist/register-journalist.component';
 import { ArticleComponent } from './Article/article/article.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const routes: Routes = [
     {
@@ -47,6 +48,10 @@ const routes: Routes = [
     {
         path:'journalist/article',
         component:ArticleComponent
+    },
+    {
+        path:'accueil',
+        component:AccueilComponent
     },
     {
         path: '',

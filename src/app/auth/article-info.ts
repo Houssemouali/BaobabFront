@@ -1,20 +1,22 @@
 export class ArticleInfo {
     title:string;
     content:string;
-    author:number;
+    //author:number;
     language:number;
     category:string;
     tags:number;
 
-constructor( title:string,
+constructor( 
+    title:string,
     content:string,
-    author:number,
+    //author:number,
     language:number,
     category:string,
-    tags:number){
+    tags:number
+    ){
         this.title=title;
         this.content=content;
-        this.author=author;
+        //this.author=author;
         this.language=language;
         this.category=category;
         this.tags=tags;

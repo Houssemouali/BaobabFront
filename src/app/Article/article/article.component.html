@@ -1,34 +1,54 @@
-<ng-template #articleForm>
+<h1>Redact Article :</h1>
   <div class="row col-sm-6" style="max-width:350px;">
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <!-- <div class="form-group">
-        <label for="name">Your name</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
-        <div *ngIf="f.submitted && name.invalid">
-          <div *ngIf="name.errors.required">Name is required</div>
-        </div>
-      </div> -->
+    <form name="articleForm"  (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" [(ngModel)]="form.title" #title="ngModel"
-          required />
+        <input type="text"  [(ngModel)]="articleForm.title" name="title" class="form-control" #title="ngModel" required />
         <div *ngIf="f.submitted && title.invalid">
           <div *ngIf="title.errors.required">title is required</div>
         </div>
       </div>
       <div class="form-group">
         <label for="content">content </label>
-       <textarea type="text" class="form-control" name="content" [(ngModel)]="form.content" #content="ngModel" required ></textarea>
+       <textarea type="text" class="form-control"  [(ngModel)]="articleForm.content" name="content" #content="ngModel" required> </textarea> 
         <div *ngIf="f.submitted && content.invalid">
           <div *ngIf="content.errors.required">content is required</div>
         </div>
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary">Register</button>
-        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+      <div class="form-group ">
+        <label for="inputState">Language</label>
+          <option selected *ngFor="let l of language">FR</option>
+        <select id="inputState" [(ngModel)]="articleForm.language" name="language" required convert-to-number>
+          <option [value]="1" [selected]="articleForm.language">EN</option>
+          <option [value]="2" [selected]="articleForm.language">FR</option>
+        </select>
+      </div>
+      <br>
+
+      <!--Category selection -->
+        <div class="form group">
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="economie" name="categoryeco" #categoryeco="ngModel" [(ngModel)]="articleForm.category">
+          <label class="form-check-label" for="inlineCheckbox1">economy</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" id="inlineCheckbox2" value="technologie"name="categorytech" #categorytech=ngModel [(ngModel)]="articleForm.category">
+          <label class="form-check-label" for="inlineCheckbox2">technology</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="entreprise" name="categoryentr" #categoryentr="ngModel" [(ngModel)]="articleForm.category">
+          <label class="form-check-label" for="inlineCheckbox3">entreprise</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="lifestyle" name="categorylife" #categorylife="ngModel" [(ngModel)]="articleForm.category">
+            <label class="form-check-label" for="inlineCheckbox4">lifestyle</label>
+          </div>
+      </div>
+        <div class="form-group">
+        <button class="btn btn-primary">Save</button>
+        <div *ngIf="f.submitted" class="alert alert-warning">
           Signup failed!<br/>{{errorMessage}}
         </div>
       </div>
     </form>
   </div>
-</ng-template>
